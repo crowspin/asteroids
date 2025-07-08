@@ -46,7 +46,7 @@ def main():
         
             for shot in shots:
                 if shot.detect_collision(obj):
-                    obj.kill()
+                    obj.split()
                     shot.kill()
 
         for obj in drawable:

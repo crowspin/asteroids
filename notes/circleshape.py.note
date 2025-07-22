@@ -1,0 +1,5 @@
+delcares a supertype CircleShape class to be extended by subclasses later
+Is a pygame sprite
+has a position and size
+has collision detection logic (simple)
+declared draw and update for later implementation

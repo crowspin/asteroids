@@ -1,0 +1,13 @@
+import from pygame and random
+import supertype CircleShape and constants
+define class Asteroid of type CircleShape
+    init calls super init declares instance variables
+    draw draws
+    update calculates new position based on velocity and deltatime
+    split...
+        flags self for deletion
+        ceases operation if the asteroid is already the smallest size (or smaller)
+        calculates random angles for split child asteroids
+        calculates new child asteroid radii
+        creates new asteroid instances with newly generated information
+            (New instances don't need to be grouped because the Class is what's grouped technically.)

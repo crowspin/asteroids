@@ -1,0 +1,25 @@
+init initializes super (CircleShape) and declares additional instance variables
+triangle is copy pasted from lesson as instructed because 'triangles are hard'
+    feel like I'd have been better off if they'd explained what they did here
+    looks like they determine the forward direction using instance values
+    right's value is not immediately obvious, I get that it could be visualized as an L shape for directionality up until the multiplication and division
+        and the multiplication represents giving the vector direction a distance here? But the division is confusing to me I don't see what that does exactly
+    then a b and c are all the points of the triangle, using the position of the triangle with it's forward direction and size (and the right value)
+    I think the right value is just half the length of the bottom of the triangle
+        start at self.position, subtract forward (to point backward), multiply by radius to move 'pointer' to that distance from self.position in -forward direction, and then shift either +right or -right
+        meaning that if we weren't dividing by 1.5 when calculating value of right the base of the triangle would be twice the height of the triangle?
+        best guess. I think that dividing by 1.5 yields the same results as multiplying by 2/3, so then if I'm visualizing the maths correctly, the base of the triangle would be 4/3 the length? No! 4/3 the radius, which is approximately half the length, so final width should be 2/3 length and it should look pretty.
+draw creates a polygon in screen of color white with points produced by self.triangle(), and uses a line weight of 2
+rotate adds turn speed in deg/second to self.rotation (determines forward) multiplied by dt to make sure that we move smoothly based on tick speed
+update alters an inverted ratelimiting timer (shot_timer) and handles keystrokes
+move adds forward direction multiplied by speed and deltatime to position
+    I realize only now that the arithmetic operators are probably being overriden in the vector class, and the vector2 is probably a pair of coordinates internally
+        This is in contrast to how I was imagining it to be: a single number that somehow represented a position and a speed and a direction all in offscreen
+        but if you just break down the move function it's obvious that your position (a vector2) has a distance in a direction added to it, which is determined by your forward direction (could be derived from a line from 0,0 to the provided position) and a speed of pixels/second and a duration of time.
+        so you have a distance and a direction that you add to the position vector
+        above I was looking at it like it was an excessively convoluted way of shifting an object on a grid, but I think I actually do understand that now
+shoot checks the ratelimit timer, and if an acceptable amount of time has passed, then it creates a shot
+    the shot is at position x,y, so it has a position
+    the velocity assigned to it is a direction, rotated to match the player's heading, (if we assume the coordinates are floats internally, we can say that 0,1 probably becomes 0,0.9 or anything from -1 to 1 along either axis)
+    and after it's rotated the coordinates are multiplied by a speed such that the Shot.update function should just add velocity*dt to position, because velocity won't change and it needs to be compared to dt for smoothnesssss
+    

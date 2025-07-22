@@ -1,0 +1,21 @@
+imports from pygame and random
+imports Asteroid and constants
+declares class AsteroidField as Sprite
+    defines collection of edges of screen, which are pairs of 2D Vectors where one is a direction and the other is a lambda function
+    init initializes the sprite, and prepares a clock to ratelimit asteroid spawns
+    spawn creates a new asteroid of size radius, at position with velocity
+    update tracks spawntimer against dt, and if timer has reached sufficient duration:
+        resets timer to 0
+        selects a pair of vectors from 'edge' at random
+        generates a speed randomly
+        prepares a velocity vector based on direction from edge pair, and rotates it randomly
+        decides on a position in which to spawn the asteroid
+            uses second member of edge pair (the result of a lambda function that looks at screen dimensions and asteroid max radius)
+            provides that lambda with a random value between 0 and 1
+            implies that the return value is a position along a straight line from one corner to the other with a buffer space to ensure that asteroids spawn offscreen and move on screen smoothly instead of popping up
+            most of this is probably copied straight out of the lesson (as per instruction) because I don't really understand how Vector math works
+            First 'edge' lambda looks like it returns a vector2 with first argument ASTEROID_MAX_RADIUS to position this line offscreen to the left? and it's second argument accepts the random 0-1 float as a percentage of screen height, so it should create an asteroid from the left edge of the screen at a random height
+            Assuming that Vector2 objects are initialized with (x, y) coordinates.
+            Which is easy to assume *until* I look back at directions and velocities and things also operated with vector2 objects....
+        selects a 'kind' (size) for the asteroid randomly
+        and finally spawns the asteroid using all these randomly calculated values

@@ -1,0 +1,23 @@
+Main.py is execution root for applet
+imports from pygame library and other bundled py files
+Defines and executes main()
+    prints information about game from constants
+    calls pygame.init to initialize the pygame platform
+    creates a screen entity from the screen width and height constants
+    creates a tick-clock
+    declares a delta-time variable 'dt' (time that has passed since the last iteration of the game loop)
+    defines a number of sprite groups which are effectively modified arrays of objects
+    adds references to the sprite groups to the objects (which also adds references of the objects to the group definitions)
+    creates the Player object at the center of the screen
+    initializes the AsteroidField
+    Commences game loop:
+        if event.type pygame.QUIT has fired:
+            exit the game gracefully
+        fill the screen with black
+        for each object in 'updateable' group:
+            update (perform logic based on deltatime)
+        detect collisions between asteroids and player object to call 'game over'
+        detect collisions between asteroids and shot objects to split/kill asteroids
+        draw all 'drawable' objects over the black screen
+        send newly computed screen arrangement to renderer with pygame.display.flip()
+        recalculate dt based on tick-clock object supplied with intended FPS

@@ -22,3 +22,5 @@ You've done all the required steps, but if you'd like to make the project your o
 - [ ] Add bombs that can be dropped
 
 Have fun with it, and make sure to share any improvements you make with us in the Discord community!
+
+This commit is just to test that I will see the commit on my Boot.dev "streak."
